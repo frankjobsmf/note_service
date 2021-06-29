@@ -19,8 +19,6 @@ from .noteSerializers import (
 #list
 class ListNotesByUserId(APIView):
 
-
-
     def get(self, request, id, *args, **kwargs):
         
         notes_get = Note.objects.filter(
@@ -39,7 +37,27 @@ class ListNotesByUserId(APIView):
             "notes": notes.data,
             "status_code": status.HTTP_200_OK
         })
-            
+
+class ListNoteById(APIView):
+    def get(self, request, id, *args, **kwargs):
+        
+        try:
+            note_get = Note.objects.get(id=str(id))
+
+            note = NoteSerializer( note_get )
+
+            return Response({
+                "note": note.data,
+                "status_code": status.HTTP_200_OK
+            })
+
+        except:
+            return Response({
+                "note": "Nota no existe",
+                "status_code": status.HTTP_404_NOT_FOUND
+            })
+
+
 #add
 class AddNote(APIView):
     def post(self, request, *args, **kwargs):

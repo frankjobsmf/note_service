@@ -3,8 +3,10 @@ from django.urls import path, re_path
 
 #NoteService
 from .services.Note.NoteService import (
-    #list
+    #list notes by id user
     ListNotesByUserId,
+    #list nots by id
+    ListNoteById,
     #add
     AddNote,
     #update
@@ -19,11 +21,18 @@ urlpatterns = [
     #     r'^notes-userid/(?P<id>[0-9])$',
     #     ListNotesByUserId.as_view(),
     # ),
-    #add
+
+    #list notes by id user
     path(
         'notes-userid/id=<int:id>',
         ListNotesByUserId.as_view(),
     ),
+    #list note by id 
+    path(
+        'note-id/id=<int:id>',
+        ListNoteById.as_view(),
+    ),
+    #add
     path(
         'add',
         AddNote.as_view(),
