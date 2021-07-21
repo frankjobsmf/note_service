@@ -16,20 +16,14 @@ from .services.Note.NoteService import (
 )
 
 urlpatterns = [
-    #list
-    # re_path(
-    #     r'^notes-userid/(?P<id>[0-9])$',
-    #     ListNotesByUserId.as_view(),
-    # ),
-
     #list notes by id user
     path(
-        'notes-userid/id=<int:id>',
+        'notes-userid/id=<id>',
         ListNotesByUserId.as_view(),
     ),
     #list note by id 
     path(
-        'note-id/id=<int:id>',
+        'note-id/id=<id>',
         ListNoteById.as_view(),
     ),
     #add
@@ -39,12 +33,12 @@ urlpatterns = [
     ),
     #update
     path(
-        'update/id=<int:id>',
+        'update/id=<id>',
         UpdateNote.as_view(),
     ),
     #delete
     path(
-        'delete/id=<int:id>',
+        'delete/id=<id>',
         DeleteNote.as_view(),
     ),
 ]

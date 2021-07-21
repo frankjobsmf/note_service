@@ -6,7 +6,6 @@ now = datetime.now()
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
 
 #models
 from ...models import Note
@@ -24,12 +23,6 @@ class ListNotesByUserId(APIView):
         notes_get = Note.objects.filter(
             user_id=id
         )
-        
-        if len(notes_get) == 0:
-            return Response({
-                "notes": "Aun no tienes notas creadas.",
-                "status_code": status.HTTP_204_NO_CONTENT
-            })
         
         notes = NoteSerializer(notes_get, many=True)
         
@@ -70,9 +63,11 @@ class AddNote(APIView):
             content=note_post['content'],
             date=note_post['date']
         )
+
+        note = NoteSerializer(note_post)
         
         return Response({
-            "message": "Nota creada con exito",
+            "message": note.data,
             "status_code": status.HTTP_201_CREATED
         })
         

@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'note_service.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'note-app-service', 
+        'NAME': 'note_service', 
         'USER': 'postgres', 
-        'PASSWORD': '2904',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost', 
         'PORT': '5432',
     }
